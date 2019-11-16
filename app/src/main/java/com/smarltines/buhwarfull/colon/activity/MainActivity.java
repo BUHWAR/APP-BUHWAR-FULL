@@ -1,4 +1,4 @@
-package com.smarltines.buhwarfull.colon;
+package com.smarltines.buhwarfull.colon.activity;
 
 import android.Manifest;
 import android.app.Activity;
