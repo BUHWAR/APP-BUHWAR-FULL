@@ -28,10 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:text="PANICO"
-            android:background="@color/colorPrimaryDark"
-
-            android:drawableBottom="@drawable/ic_sos_mini"
-            android:text="PANICO" />
+            android:background="@color/colorPrimaryDark" />
     </com.google.android.material.navigation.NavigationView>
 
 
