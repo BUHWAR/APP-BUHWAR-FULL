@@ -7,23 +7,31 @@
         <item
             android:id="@+id/nav_helper"
             android:icon="@drawable/ic_info"
-            android:title="Acerca de ASP" />
-        <item
-            android:id="@+id/nav_statistics"
-            android:icon="@drawable/ic_statistics"
-            android:title="@string/menu_estadisticas" />
-        <item
-            android:id="@+id/nav_rodin"
-            android:icon="@drawable/ic_visit"
-            android:title="Rondin" />
+            android:title="Quiénes Somos" />
+
         <item
             android:id="@+id/nav_visitor"
             android:icon="@android:drawable/ic_menu_myplaces"
-            android:title="Visitante" />
+            android:title="Registrar visita" />
+
+        <item
+            android:id="@+id/nav_lector_qr"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Lector QR" />
+
+        <item
+            android:id="@+id/nav_statistics"
+            android:icon="@drawable/ic_statistics"
+            android:title="Mis estadísticas" />
+
+
+
+
+
         <item
             android:id="@+id/nav_incidents"
             android:icon="@drawable/ic_panic"
-            android:title="Incidencias" />
+            android:title="Registrar incidencia" />
     </group>
 
 </menu>
