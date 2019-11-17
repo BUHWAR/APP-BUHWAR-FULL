@@ -2,7 +2,6 @@ package com.smarltines.buhwarfull.colon.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,12 +43,12 @@ public class QualifyAdapater extends RecyclerView.Adapter<QualifyAdapater.Custom
             super(itemView);
             myView = itemView;
 
-            txtName = myView.findViewById(R.id.tvNameGuard_list);
+            txtName = myView.findViewById(R.id.tvDay_list);
             txtPhone = myView.findViewById(R.id.tvNNumberGuard_list);
             txtEmail = myView.findViewById(R.id.tvEmailGuard_list);
-            txtDesc = myView.findViewById(R.id.tvDescriptionGuard_list);
+            txtDesc = myView.findViewById(R.id.tvDescription_list);
             img = myView.findViewById(R.id.imgGuard_list);
-            cardView = myView.findViewById(R.id.cardQualify);
+            cardView = myView.findViewById(R.id.cardRegister);
         }
     }
 

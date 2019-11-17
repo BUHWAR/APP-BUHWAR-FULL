@@ -13,7 +13,6 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.smarltines.buhwarfull.R;
-import com.smarltines.buhwarfull.colon.activity.QualifyActivity;
 import com.smarltines.buhwarfull.colon.activity.detailGuard.ui.DetailGuardActivity;
 import com.smarltines.buhwarfull.model.GuardModel;
 
@@ -44,12 +43,12 @@ public class GuardAdapater extends RecyclerView.Adapter<GuardAdapater.CustomView
             super(itemView);
             myView = itemView;
 
-            txtName = myView.findViewById(R.id.tvNameGuard_list);
+            txtName = myView.findViewById(R.id.tvDay_list);
             txtPhone = myView.findViewById(R.id.tvNNumberGuard_list);
             txtEmail = myView.findViewById(R.id.tvEmailGuard_list);
-            txtDesc = myView.findViewById(R.id.tvDescriptionGuard_list);
+            txtDesc = myView.findViewById(R.id.tvDescription_list);
             img = myView.findViewById(R.id.imgGuard_list);
-            cardView = myView.findViewById(R.id.cardQualify);
+            cardView = myView.findViewById(R.id.cardRegister);
         }
     }
 
