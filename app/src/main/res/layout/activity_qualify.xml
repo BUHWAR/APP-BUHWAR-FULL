@@ -208,7 +208,7 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="Comunicacion"
-                            android:textSize="14sp" />
+                            android:textSize="12sp" />
 
                         <RatingBar
                             android:id="@+id/rbCommunication"
