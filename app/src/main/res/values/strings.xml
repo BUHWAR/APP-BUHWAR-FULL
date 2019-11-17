@@ -7,10 +7,19 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">S.O.S.</string>
-    <string name="menu_gallery">Calificar</string>
-    <string name="menu_slideshow">Estadisticas</string>
-    <string name="menu_tools">Visitas</string>
-    <string name="menu_share">¿Quienes somos?</string>
-    <string name="menu_send">Guardias</string>
+    <string name="menu_sos">S.O.S.</string>
+    <string name="menu_calificar">Calificar</string>
+    <string name="menu_estadisticas">Estadisticas</string>
+    <string name="menu_visitas">Visitas</string>
+    <string name="menu_helper">¿Quienes somos?</string>
+    <string name="menu_guardias">Guardias</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_guard_main">GuardMainActivity</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
 </resources>

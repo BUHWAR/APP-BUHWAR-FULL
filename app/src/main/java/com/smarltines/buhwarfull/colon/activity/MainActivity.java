@@ -4,14 +4,14 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
+import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
@@ -34,7 +34,7 @@ import android.view.Menu;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private AppBarConfiguration mAppBarConfiguration;
     private SosFragment sosFragment;
@@ -52,23 +52,31 @@ public class MainActivity extends AppCompatActivity {
 
          drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        MenuItem menuItem = navigationView.getMenu().getItem(0);
+        onNavigationItemSelected(menuItem);
+        menuItem.setChecked(true);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share, R.id.nav_send)
+                R.id.nav_qualify, R.id.nav_statistics,
+                R.id.nav_visit, R.id.nav_helper, R.id.nav_guard, R.id.nav_rodin)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
+
         btnPanic = (Button) findViewById(R.id.btnPanico);
         btnPanic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 setTitle("S.O.S");
                 checkpermissioncall();
-                drawer.closeDrawer(GravityCompat.START);
+
 
             }
         });
@@ -77,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.colono_main, menu);
         return true;
     }
 
@@ -129,10 +137,8 @@ public class MainActivity extends AppCompatActivity {
     private void checkpermissioncall() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(this, "Permisos concedidos ahora puedes hacer llamadas ", Toast.LENGTH_LONG).show();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.nav_host_fragment,sosFragment)
-                    .addToBackStack(null)
-                    .commit();
+            Intent intent = new Intent(this, SosActivity.class);
+            startActivity(intent);
         } else {
             solicitarPermiso(new String[]{Manifest.permission.CALL_PHONE},
                     "Sin el permiso de llamadas no puedes hacer llamadas de panico", 200, this);
@@ -160,5 +166,18 @@ public class MainActivity extends AppCompatActivity {
         } else {
             ActivityCompat.requestPermissions(actividad, permisos,requestCode);
         }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.nav_rondin:
+                setTitle("Rondin");
+                Intent i = new Intent(MainActivity.this, MapsActivity.class);
+                startActivity(i);
+                break;
+        }
+        return true;
+
     }
 }

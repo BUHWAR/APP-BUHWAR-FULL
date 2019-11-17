@@ -14,15 +14,15 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.smarltines.buhwarfull.R;
 
-public class ShareFragment extends Fragment {
+public class HelperFragment extends Fragment {
 
-    private ShareViewModel shareViewModel;
+    private HelperViewModel shareViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         shareViewModel =
-                ViewModelProviders.of(this).get(ShareViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_share, container, false);
+                ViewModelProviders.of(this).get(HelperViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_helper, container, false);
         final TextView textView = root.findViewById(R.id.text_share);
         shareViewModel.getText().observe(this, new Observer<String>() {
             @Override
