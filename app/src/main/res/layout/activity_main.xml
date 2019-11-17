@@ -27,10 +27,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text="Botón de pánico"
+            android:text="PANICO"
             android:background="@color/colorPrimaryDark"
 
-            />
+            android:drawableBottom="@drawable/ic_sos_mini"
+            android:text="PANICO" />
     </com.google.android.material.navigation.NavigationView>
 
 

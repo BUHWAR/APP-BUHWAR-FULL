@@ -21,7 +21,7 @@ public class GuardFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_guard, container, false);
 
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getContext(), getFragmentManager());
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getContext(), getChildFragmentManager());
         ViewPager viewPager = root.findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = root.findViewById(R.id.tabs);
