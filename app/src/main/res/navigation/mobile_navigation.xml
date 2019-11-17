@@ -3,41 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@id/nav_helper">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.smarltines.buhwarfull.guard.ui.statistics.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/nav_statistics"
+        android:name="com.smarltines.buhwarfull.guard.ui.statistics.StatiticsFragment"
+        android:label="Estadisticas" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.smarltines.buhwarfull.guard.ui.herlper.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_helper"
+        android:name="com.smarltines.buhwarfull.colon.ui.helper.HelperFragment"
+        android:label="ASP Solutions"
+        tools:layout="@layout/fragment_helper" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.smarltines.buhwarfull.guard.ui.rondin.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_rodin"
+        android:name="com.smarltines.buhwarfull.guard.ui.rondin.RodinFragment"
+        android:label="Rodin"
+        tools:layout="@layout/fragment_rondin" />
 
     <fragment
-        android:id="@+id/nav_tools"
-        android:name="com.smarltines.buhwarfull.guard.ui.sos.ToolsFragment"
-        android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
-
-    <fragment
-        android:id="@+id/nav_share"
+        android:id="@+id/nav_visitor"
         android:name="com.smarltines.buhwarfull.guard.ui.visitor.VisitorFragment"
-        android:label="@string/menu_share"
+        android:label="Visitas"
         tools:layout="@layout/fragment_visitor" />
 
     <fragment
         android:id="@+id/nav_incidents"
         android:name="com.smarltines.buhwarfull.guard.ui.incidents.IncidentsFragment"
-        android:label="@string/menu_send"
+        android:label="Incidencias"
         tools:layout="@layout/fragment_incidents" />
 </navigation>

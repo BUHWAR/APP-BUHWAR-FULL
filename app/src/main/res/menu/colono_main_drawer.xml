@@ -7,6 +7,10 @@
     <group android:checkableBehavior="single">
 
         <item
+            android:id="@+id/nav_helper"
+            android:icon="@drawable/ic_info"
+            android:title="@string/menu_helper" />
+        <item
             android:id="@+id/nav_qualify"
             android:icon="@drawable/ic_qualify"
             android:title="@string/menu_calificar" />
@@ -22,10 +26,6 @@
             android:id="@+id/nav_guard"
             android:icon="@drawable/ic_guard"
             android:title="@string/menu_guardias" />
-        <item
-            android:id="@+id/nav_helper"
-            android:icon="@drawable/ic_info"
-            android:title="@string/menu_helper" />
         <item
             android:id="@+id/nav_rodin"
             android:icon="@drawable/ic_visit"

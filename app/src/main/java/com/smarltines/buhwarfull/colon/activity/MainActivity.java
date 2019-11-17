@@ -23,7 +23,6 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 import com.smarltines.buhwarfull.R;
-import com.smarltines.buhwarfull.colon.ui.sos.SosFragment;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -34,31 +33,19 @@ import android.view.Menu;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private SosFragment sosFragment;
-    private FragmentManager fragmentManager;
+
     private Button btnPanic;
-    private  DrawerLayout drawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        sosFragment = SosFragment.newInstance();
-        fragmentManager = getSupportFragmentManager();
-
-         drawer = findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        MenuItem menuItem = navigationView.getMenu().getItem(0);
-        onNavigationItemSelected(menuItem);
-        menuItem.setChecked(true);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_qualify, R.id.nav_statistics,
                 R.id.nav_visit, R.id.nav_helper, R.id.nav_guard, R.id.nav_rodin)
@@ -111,10 +98,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (requestCode == 200) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "Permiso concedido ahora puedes hacer llamadas ", Toast.LENGTH_LONG).show();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.nav_host_fragment,sosFragment)
-                        .addToBackStack(null)
-                        .commit();
+ //
             } else {
                 Toast.makeText(this, "Oops permiso denegado", Toast.LENGTH_LONG).show();
                 //finish();
@@ -168,16 +152,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        switch (menuItem.getItemId()) {
-            case R.id.nav_rondin:
-                setTitle("Rondin");
-                Intent i = new Intent(MainActivity.this, MapsActivity.class);
-                startActivity(i);
-                break;
-        }
-        return true;
 
-    }
+
+
 }

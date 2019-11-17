@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/nav_qualify">
+    app:startDestination="@id/nav_helper">
 
     <fragment
         android:id="@+id/nav_qualify"
@@ -26,20 +26,18 @@
     <fragment
         android:id="@+id/nav_helper"
         android:name="com.smarltines.buhwarfull.colon.ui.helper.HelperFragment"
-        android:label="@string/menu_share"
+        android:label="ASP Solutions"
         tools:layout="@layout/fragment_helper" />
 
     <fragment
         android:id="@+id/nav_guard"
-        android:name="com.smarltines.buhwarfull.colon.ui.guard.SendFragment"
+        android:name="com.smarltines.buhwarfull.colon.ui.guard.GuardFragment"
         android:label="@string/menu_guardias"
         tools:layout="@layout/fragment_incidents" />
-    <activity
-        android:id="@+id/nav_rondin"
-        android:name="com.smarltines.buhwarfull.colon.activity.MapsActivity"
+
+    <fragment
+        android:id="@+id/nav_rodin"
+        android:name="com.smarltines.buhwarfull.colon.ui.rondin.RodinFragment"
         android:label="Rondin"
-        tools:layout="@layout/activity_maps" />
-
-
-
+        tools:layout="@layout/fragment_rondin" />
 </navigation>

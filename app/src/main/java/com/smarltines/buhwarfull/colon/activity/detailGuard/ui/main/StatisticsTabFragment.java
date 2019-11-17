@@ -1,4 +1,4 @@
-package com.smarltines.buhwarfull.colon.ui.statistics;
+package com.smarltines.buhwarfull.colon.activity.detailGuard.ui.main;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Description;
@@ -19,7 +18,7 @@ import com.smarltines.buhwarfull.R;
 
 import java.util.ArrayList;
 
-public class StatisticsFragment extends Fragment {
+public class StatisticsTabFragment extends Fragment {
 
     BarChart pieChart;
 
