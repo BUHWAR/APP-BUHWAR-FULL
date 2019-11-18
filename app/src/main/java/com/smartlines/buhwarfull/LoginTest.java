@@ -1,15 +1,15 @@
 package com.smartlines.buhwarfull;
 
-        import android.content.Intent;
-        import android.os.Bundle;
-        import android.view.View;
-        import android.widget.Button;
+import androidx.appcompat.app.AppCompatActivity;
 
-        import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
-        import com.smartlines.buhwarfull.guard.GuardMainActivity;
+import com.smartlines.buhwarfull.colon.activity.MainActivity;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginTest extends AppCompatActivity {
     private Button btnLogin;
 
     @Override
@@ -21,9 +21,11 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                Intent intent=new Intent(LoginActivity.this, MainActivity.class);
+                Intent intent=new Intent(LoginTest.this, MainActivity.class);
                 startActivity(intent);
             }
         });
     }
-}
+
+    }
+
