@@ -7,30 +7,30 @@
 
     <fragment
         android:id="@+id/nav_statistics"
-        android:name="com.smarltines.buhwarfull.guard.ui.statistics.StatiticsFragment"
+        android:name="com.smartlines.buhwarfull.guard.ui.statistics.StatiticsFragment"
         android:label="Estadisticas" />
 
     <fragment
         android:id="@+id/nav_helper"
-        android:name="com.smarltines.buhwarfull.colon.ui.helper.HelperFragment"
+        android:name="com.smartlines.buhwarfull.colon.ui.helper.HelperFragment"
         android:label="ASP Solutions"
         tools:layout="@layout/fragment_helper" />
 
     <fragment
-        android:id="@+id/nav_rodin"
-        android:name="com.smarltines.buhwarfull.guard.ui.rondin.RodinFragment"
-        android:label="Rodin"
-        tools:layout="@layout/fragment_rondin" />
-
-    <fragment
         android:id="@+id/nav_visitor"
-        android:name="com.smarltines.buhwarfull.guard.ui.visitor.VisitorFragment"
+        android:name="com.smartlines.buhwarfull.guard.ui.visitor.VisitorFragment"
         android:label="Visitas"
         tools:layout="@layout/fragment_visitor" />
 
     <fragment
         android:id="@+id/nav_incidents"
-        android:name="com.smarltines.buhwarfull.guard.ui.incidents.IncidentsFragment"
+        android:name="com.smartlines.buhwarfull.guard.ui.incidents.IncidentsFragment"
         android:label="Incidencias"
         tools:layout="@layout/fragment_incidents" />
+
+    <fragment
+        android:id="@+id/nav_mi_rondin"
+        android:name="com.smartlines.buhwarfull.guard.ui.rondin.RodinFragment"
+        android:label="Mi rondin"
+        tools:layout="@layout/fragment_rondin" />
 </navigation>

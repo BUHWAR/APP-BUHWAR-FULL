@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.smarltines.buhwarfull">
+    package="com.smartlines.buhwarfull">
 
     <uses-permission android:name="your.package.name.permission.MAPS_RECEIVE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -21,10 +21,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".colon.activity.detailGuard.ui.DetailGuardActivity"></activity>
-        <activity android:name=".colon.activity.SosActivity" />
+        <activity android:name="com.smartlines.buhwarfull.colon.activity.detailGuard.ui.DetailGuardActivity"></activity>
+        <activity android:name="com.smartlines.buhwarfull.colon.activity.SosActivity" />
         <activity
-            android:name=".guard.GuardMainActivity"
+            android:name="com.smartlines.buhwarfull.guard.GuardMainActivity"
             android:label="@string/title_activity_guard_main"
             android:theme="@style/AppTheme.NoActionBar" />
 
@@ -32,8 +32,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".colon.activity.QualifyActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name="com.smartlines.buhwarfull.colon.activity.QualifyActivity" />
+        <activity android:name="com.smartlines.buhwarfull.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,7 +41,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".colon.activity.MainActivity"
+            android:name="com.smartlines.buhwarfull.colon.activity.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>

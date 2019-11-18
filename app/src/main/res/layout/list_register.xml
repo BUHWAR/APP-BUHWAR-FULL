@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardQualify"
+        android:id="@+id/cardRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp">
@@ -31,7 +31,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tvNameGuard_list"
+                    android:id="@+id/tvDay_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="1dp"
@@ -41,7 +41,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tvDescriptionGuard_list"
+                    android:id="@+id/tvDescription_list"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="1dp"
