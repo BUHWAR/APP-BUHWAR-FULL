@@ -7,44 +7,44 @@
 
     <fragment
         android:id="@+id/nav_qualify"
-        android:name="com.smarltines.buhwarfull.colon.ui.qualify.QualifyFragment"
+        android:name="com.smartlines.buhwarfull.colon.ui.qualify.QualifyFragment"
         android:label="@string/menu_calificar"
         tools:layout="@layout/fragment_qualify" />
 
     <fragment
         android:id="@+id/nav_statistics"
-        android:name="com.smarltines.buhwarfull.colon.ui.statistics.StatisticsFragment"
+        android:name="com.smartlines.buhwarfull.colon.ui.statistics.StatisticsFragment"
         android:label="@string/menu_estadisticas"
         tools:layout="@layout/fragment_statistics" />
 
     <fragment
         android:id="@+id/nav_visit"
-        android:name="com.smarltines.buhwarfull.colon.ui.visit.VisitFragment"
+        android:name="com.smartlines.buhwarfull.colon.ui.visit.VisitFragment"
         android:label="@string/menu_visitas"
         tools:layout="@layout/fragment_visit" />
 
     <fragment
         android:id="@+id/nav_helper"
-        android:name="com.smarltines.buhwarfull.colon.ui.helper.HelperFragment"
+        android:name="com.smartlines.buhwarfull.colon.ui.helper.HelperFragment"
         android:label="ASP Solutions"
         tools:layout="@layout/fragment_helper" />
 
     <fragment
         android:id="@+id/nav_guard"
-        android:name="com.smarltines.buhwarfull.colon.ui.guard.GuardFragment"
+        android:name="com.smartlines.buhwarfull.colon.ui.guard.GuardFragment"
         android:label="@string/menu_guardias"
         tools:layout="@layout/fragment_incidents" />
 
     <fragment
         android:id="@+id/nav_rodin"
-        android:name="com.smarltines.buhwarfull.colon.ui.rondin.RodinFragment"
+        android:name="com.smartlines.buhwarfull.colon.ui.rondin.RodinFragment"
         android:label="Rondin"
         tools:layout="@layout/fragment_rondin" />
 
 
     <fragment
         android:id="@+id/nav_register"
-        android:name="com.smarltines.buhwarfull.colon.ui.resgister.RegisterFragment"
+        android:name="com.smartlines.buhwarfull.colon.ui.resgister.RegisterFragment"
         android:label="Incidencias"
         tools:layout="@layout/fragment_register" />
 </navigation>
