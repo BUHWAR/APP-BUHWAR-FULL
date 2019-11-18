@@ -1,6 +1,11 @@
 package com.smartlines.buhwarfull.colon.ui.visit;
 
+import android.Manifest;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
@@ -21,6 +26,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -39,7 +46,6 @@ import java.util.Calendar;
 
 public class VisitFragment extends Fragment {
 
-    private VisitViewModel toolsViewModel;
     private TextView txtDateVisita;
     private Spinner spinnerVisita;
     private EditText mNombre,mApellidos;
@@ -52,8 +58,7 @@ public class VisitFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        toolsViewModel =
-                ViewModelProviders.of(this).get(VisitViewModel.class);
+
         View view = inflater.inflate(R.layout.fragment_visit, container, false);
         spinnerVisita = view.findViewById(R.id.spinnerVisita);
         txtDateVisita = view.findViewById(R.id.txtDateVisita);
@@ -82,24 +87,28 @@ public class VisitFragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nombre = mNombre.getText().toString().trim();
-                String apellidos=mApellidos.getText().toString().trim();
-                String texto="";
-                if (TextUtils.isEmpty(nombre)||TextUtils.isEmpty(apellidos)){
-                    Toast.makeText(getActivity(), "Campos Vacios", Toast.LENGTH_SHORT).show();
-                }else {
-                    try {
-                        texto=nombre+","+apellidos+","+fecha+","+spinnerVisita.getSelectedItem()+","+"DIRECCION PENDIENTE";
 
-                        bitmap = TextToImageEncode(texto);
-                        iv.setImageBitmap(bitmap);
-                        String path = saveImage(bitmap);  //give read write permission
-                        Toast.makeText(getActivity(), "QRCode saved to -> "+path, Toast.LENGTH_SHORT).show();
-                        share(path);
-                    } catch (WriterException e) {
-                        e.printStackTrace();
+                if(checkpermissionwriteread()){
+                    String nombre = mNombre.getText().toString().trim();
+                    String apellidos=mApellidos.getText().toString().trim();
+                    String texto="";
+                    if (TextUtils.isEmpty(nombre)||TextUtils.isEmpty(apellidos)){
+                        Toast.makeText(getActivity(), "Campos Vacios", Toast.LENGTH_SHORT).show();
+                    }else {
+                        try {
+                            texto=nombre+","+apellidos+","+fecha+","+spinnerVisita.getSelectedItem()+","+"DIRECCION PENDIENTE";
+
+                            bitmap = TextToImageEncode(texto);
+                            iv.setImageBitmap(bitmap);
+                            String path = saveImage(bitmap);  //give read write permission
+                            Toast.makeText(getActivity(), "QRCode saved to -> "+path, Toast.LENGTH_SHORT).show();
+                            share(path);
+                        } catch (WriterException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
+
 
             }
         });
@@ -185,5 +194,40 @@ public class VisitFragment extends Fragment {
         //startActivity(Intent.createChooser(shareIntent, "Share image using"));
         startActivity(Intent.createChooser(shareIntent, "Compartir QR vía"));
     }
+    private boolean checkpermissionwriteread() {
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(getContext(), "Permisos concedidos ahora puedes leer/escribir tus archivos ", Toast.LENGTH_LONG).show();
+            //fragmentManager.beginTransaction().replace(R.id.nav_host_fragment,visitaFragment).addToBackStack(null).commit();
+            return true;
+        } else {
+            solicitarPermiso(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    "Sin el permiso de leer/escribir archivos no puedes acceder a tus archivos", 100, getActivity());
+            return false;
+        }
+    }
+
+    private void solicitarPermiso(final String[] permisos, final String justificacion,
+                                  final int requestCode, final Activity actividad) {
+//        if (ActivityCompat.shouldShowRequestPermissionRationale(actividad,
+//                permisos[0]) && ActivityCompat.shouldShowRequestPermissionRationale(actividad,
+//                permisos[1])) {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(actividad,
+                permisos[0])) {
+            new AlertDialog.Builder(actividad)
+                    .setTitle("Solicitud de permiso")
+                    .setMessage(justificacion)
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            ActivityCompat.requestPermissions(actividad,
+                                    permisos, requestCode);
+                        }
+                    })
+                    .show();
+        } else {
+            ActivityCompat.requestPermissions(actividad, permisos,requestCode);
+        }
+    }
+
 
 }

@@ -17,12 +17,6 @@
         tools:layout="@layout/fragment_helper" />
 
     <fragment
-        android:id="@+id/nav_rodin"
-        android:name="com.smartlines.buhwarfull.guard.ui.rondin.RodinFragment"
-        android:label="Rodin"
-        tools:layout="@layout/fragment_rondin" />
-
-    <fragment
         android:id="@+id/nav_visitor"
         android:name="com.smartlines.buhwarfull.guard.ui.visitor.VisitorFragment"
         android:label="Visitas"
@@ -33,4 +27,10 @@
         android:name="com.smartlines.buhwarfull.guard.ui.incidents.IncidentsFragment"
         android:label="Incidencias"
         tools:layout="@layout/fragment_incidents" />
+
+    <fragment
+        android:id="@+id/nav_mi_rondin"
+        android:name="com.smartlines.buhwarfull.guard.ui.rondin.RodinFragment"
+        android:label="Mi rondin"
+        tools:layout="@layout/fragment_rondin" />
 </navigation>
