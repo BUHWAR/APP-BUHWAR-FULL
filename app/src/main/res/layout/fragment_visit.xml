@@ -25,7 +25,7 @@
                     android:layout_height="wrap_content"
                     android:background="@color/colorPrimaryDark"
                     android:gravity="center"
-                    android:text="Programar Visita"
+                    android:text="Datos de visita"
                     android:textColor="@android:color/white"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -73,7 +73,7 @@
                             android:layout_width="269dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Tipo de visita" />
+                            android:text="Motivo de visita" />
 
                         <Spinner
                             android:id="@+id/spinnerVisita"
@@ -86,6 +86,7 @@
                         android:id="@+id/button2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="#B2DFDB"
                         android:text="Generar codigo" />
 
                     <ImageView

@@ -50,6 +50,24 @@
                         android:orientation="horizontal">
 
                         <EditText
+                            android:id="@+id/txtMatriculaVisitante"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:hint="Placas"
+                            android:inputType="textPersonName" />
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
                             android:id="@+id/txtNameVisitante"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -76,21 +94,7 @@
                             android:inputType="textPersonName" />
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
 
-                        <EditText
-                            android:id="@+id/txtMatriculaVisitante"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:ems="10"
-                            android:hint="Matricula"
-                            android:inputType="textPersonName" />
-                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"

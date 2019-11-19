@@ -58,7 +58,7 @@ public class VisitorFragment extends Fragment {
         txtDateVistante.setText(strDate);
         txtTimeVisitante.setText(strTime);
 
-        String[] opcSospecha = {"bajo","Moderado","Alto"};
+        String[] opcSospecha = {"Bajo","Moderado","Alto"};
         ArrayAdapter adapterPlace = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opcSospecha);
         spinnerSopecha.setAdapter(adapterPlace);
         return root;

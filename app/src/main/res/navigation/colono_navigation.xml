@@ -26,13 +26,13 @@
     <fragment
         android:id="@+id/nav_helper"
         android:name="com.smartlines.buhwarfull.colon.ui.helper.HelperFragment"
-        android:label="ASP Solutions"
+        android:label="Quiénes somos"
         tools:layout="@layout/fragment_helper" />
 
     <fragment
         android:id="@+id/nav_guard"
         android:name="com.smartlines.buhwarfull.colon.ui.guard.GuardFragment"
-        android:label="@string/menu_guardias"
+        android:label="Registrar visita"
         tools:layout="@layout/fragment_incidents" />
 
     <fragment

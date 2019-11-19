@@ -10,7 +10,7 @@
     <string name="menu_sos">S.O.S.</string>
     <string name="menu_calificar">Calificar</string>
     <string name="menu_estadisticas">Estadisticas</string>
-    <string name="menu_visitas">Visitas</string>
+    <string name="menu_visitas">Programar visita</string>
     <string name="menu_helper">¿Quienes somos?</string>
     <string name="menu_guardias">Guardias</string>
     <string name="title_activity_maps">Map</string>

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.smartlines.buhwarfull.colon.activity.MainActivity;
+import com.smartlines.buhwarfull.guard.GuardMainActivity;
 
 public class LoginTest extends AppCompatActivity {
     private Button btnLogin;
@@ -21,7 +22,7 @@ public class LoginTest extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                Intent intent=new Intent(LoginTest.this, MainActivity.class);
+                Intent intent=new Intent(LoginTest.this, GuardMainActivity.class);
                 startActivity(intent);
             }
         });
