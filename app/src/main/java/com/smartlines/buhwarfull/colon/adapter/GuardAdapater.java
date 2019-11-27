@@ -18,7 +18,7 @@ import com.smartlines.buhwarfull.model.GuardModel;
 
 import java.util.List;
 
-public class GuardAdapater extends RecyclerView.Adapter<GuardAdapater.CustomViewHolder>{
+public class GuardAdapater extends RecyclerView.Adapter<GuardAdapater.CustomViewHolder> {
     private List<GuardModel> dataList;
     private Activity context;
 
@@ -39,6 +39,7 @@ public class GuardAdapater extends RecyclerView.Adapter<GuardAdapater.CustomView
         ImageView img;
         RelativeLayout relativeLayout;
         CardView cardView;
+
         CustomViewHolder(View itemView) {
             super(itemView);
             myView = itemView;
@@ -73,7 +74,7 @@ public class GuardAdapater extends RecyclerView.Adapter<GuardAdapater.CustomView
         holder.txtDesc.setText(dataList.get(position).getDescriptionGuard());
 
         CardView mcardView = holder.cardView;
-        mcardView.setOnClickListener( new View.OnClickListener() {
+        mcardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailGuardActivity.class);

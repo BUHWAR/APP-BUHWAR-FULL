@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "283211877272",
+    "firebase_url": "https://buhwar-260021.firebaseio.com",
+    "project_id": "buhwar-260021",
+    "storage_bucket": "buhwar-260021.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:283211877272:android:e98c2a35cba77b9d2579ed",
+        "android_client_info": {
+          "package_name": "com.smartlines.buhwarfull"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "283211877272-34dvnc6tem03onm19goscecg46td7je9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0BZ-HU7h7cAJBTzA54ZA3wh3AC9GbdFc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "283211877272-34dvnc6tem03onm19goscecg46td7je9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

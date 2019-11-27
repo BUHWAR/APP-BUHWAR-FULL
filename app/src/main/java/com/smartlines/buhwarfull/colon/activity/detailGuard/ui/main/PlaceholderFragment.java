@@ -24,10 +24,14 @@ public class PlaceholderFragment extends Fragment {
     private PageViewModel pageViewModel;
 
     public static Fragment newInstance(int index) {
-        Fragment fragment=null;
-        switch (index){
-            case 1: fragment=new InfoTabFragment();break;
-            case 2: fragment=new StatisticsTabFragment();break;
+        Fragment fragment = null;
+        switch (index) {
+            case 1:
+                fragment = new InfoTabFragment();
+                break;
+            case 2:
+                fragment = new StatisticsTabFragment();
+                break;
         }
         return fragment;
     }

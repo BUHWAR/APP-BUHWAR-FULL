@@ -20,7 +20,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/colono_main_drawer" >
+        app:menu="@menu/colono_main_drawer">
 
         <Button
             android:id="@+id/btnPanico"
@@ -29,7 +29,7 @@
             android:layout_gravity="bottom"
             android:text="Botón de pánico"
             android:background="@color/colorPrimaryDark"
-            android:drawableBottom="@drawable/ic_sos_mini"/>
+            android:drawableBottom="@drawable/ic_sos_mini" />
 
 
     </com.google.android.material.navigation.NavigationView>

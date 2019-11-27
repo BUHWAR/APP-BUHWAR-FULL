@@ -37,6 +37,7 @@ public class HelperFragment extends Fragment {
     private boolean flagVision = false;
     private boolean flagPersonal = false;
     private boolean flagObjetivo = false;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         shareViewModel =
@@ -56,10 +57,10 @@ public class HelperFragment extends Fragment {
 
         btnInfo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(!flagInfo){
+                if (!flagInfo) {
                     txtInfo.setText(INFO);
                     flagInfo = true;
-                }else {
+                } else {
                     txtInfo.setText("");
                     flagInfo = false;
                 }
@@ -68,10 +69,10 @@ public class HelperFragment extends Fragment {
 
         btnMision.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(!flagMision){
+                if (!flagMision) {
                     txtMision.setText(MISION);
                     flagMision = true;
-                }else {
+                } else {
                     txtMision.setText("");
                     flagMision = false;
 
@@ -82,11 +83,11 @@ public class HelperFragment extends Fragment {
 
         btnVision.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(!flagVision){
+                if (!flagVision) {
                     txtVision.setText(VISION);
 
                     flagVision = true;
-                }else {
+                } else {
                     txtVision.setText("");
                     flagVision = false;
 
@@ -96,13 +97,12 @@ public class HelperFragment extends Fragment {
         });
 
 
-
         btnPersonal.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(!flagPersonal){
+                if (!flagPersonal) {
                     txtPersonal.setText(PERSONA);
                     flagPersonal = true;
-                }else {
+                } else {
                     txtPersonal.setText("");
                     flagPersonal = false;
 
@@ -113,10 +113,10 @@ public class HelperFragment extends Fragment {
 
         btnObjetivo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(!flagObjetivo){
+                if (!flagObjetivo) {
                     txtObjetivo.setText(OBJETIVO);
                     flagObjetivo = true;
-                }else {
+                } else {
                     txtObjetivo.setText("");
                     flagObjetivo = false;
 

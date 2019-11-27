@@ -12,7 +12,6 @@ public class Constanst {
             "comerciales, escuelas, hoteles, oficinas, teatros y eventos particulares.";
 
 
-
     public static String MISION = "Ofrecer el mejor servicio de Vigilancia Residencial de Inmuebles, " +
             "mediante tecnología de vanguardia que salvaguarde el patrimonio y la " +
             "tranquilidad de nuestros clientes.";

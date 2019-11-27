@@ -29,7 +29,6 @@
             android:icon="@drawable/ic_statistics"
             android:title="Mis estadísticas" />
 
-
         <item
             android:id="@+id/nav_incidents"
             android:icon="@drawable/ic_panic"

@@ -48,13 +48,13 @@ public class VisitFragment extends Fragment {
 
     private TextView txtDateVisita;
     private Spinner spinnerVisita;
-    private EditText mNombre,mApellidos;
+    private EditText mNombre, mApellidos;
     private ImageView iv;
     private Button btn;
 
-    public final static int QRcodeWidth = 500 ;
+    public final static int QRcodeWidth = 500;
     private static final String IMAGE_DIRECTORY = "/QRcodeVisitas";
-    Bitmap bitmap ;
+    Bitmap bitmap;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -63,16 +63,16 @@ public class VisitFragment extends Fragment {
         spinnerVisita = view.findViewById(R.id.spinnerVisita);
         txtDateVisita = view.findViewById(R.id.txtDateVisita);
 
-        mNombre=view.findViewById(R.id.editText);
-        mApellidos=view.findViewById(R.id.editText2);
-        btn=view.findViewById(R.id.button2);
+        mNombre = view.findViewById(R.id.editText);
+        mApellidos = view.findViewById(R.id.editText2);
+        btn = view.findViewById(R.id.button2);
         iv = (ImageView) view.findViewById(R.id.iv);
 
         Calendar calender = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        String strDate = "Fecha : "+dateFormat.format(calender.getTime());
+        String strDate = "Fecha : " + dateFormat.format(calender.getTime());
 
-        String[] opcVisita = {"Familiar","Eventos","Personal"};
+        String[] opcVisita = {"Familiar", "Eventos", "Personal"};
 
         ArrayAdapter adapterVisita = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opcVisita);
         spinnerVisita.setAdapter(adapterVisita);
@@ -81,27 +81,28 @@ public class VisitFragment extends Fragment {
         createQR(strDate);
         return view;
     }
+
     //METODOS QR
-    private void createQR(final String fecha){
+    private void createQR(final String fecha) {
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(checkpermissionwriteread()){
+                if (checkpermissionwriteread()) {
                     String nombre = mNombre.getText().toString().trim();
-                    String apellidos=mApellidos.getText().toString().trim();
-                    String texto="";
-                    if (TextUtils.isEmpty(nombre)||TextUtils.isEmpty(apellidos)){
+                    String apellidos = mApellidos.getText().toString().trim();
+                    String texto = "";
+                    if (TextUtils.isEmpty(nombre) || TextUtils.isEmpty(apellidos)) {
                         Toast.makeText(getActivity(), "Campos Vacios", Toast.LENGTH_SHORT).show();
-                    }else {
+                    } else {
                         try {
-                            texto=nombre+","+apellidos+","+fecha+","+spinnerVisita.getSelectedItem()+","+"DIRECCION PENDIENTE";
+                            texto = nombre + "," + apellidos + "," + fecha + "," + spinnerVisita.getSelectedItem() + "," + "DIRECCION PENDIENTE";
 
                             bitmap = TextToImageEncode(texto);
                             iv.setImageBitmap(bitmap);
                             String path = saveImage(bitmap);  //give read write permission
-                            Toast.makeText(getActivity(), "QRCode saved to -> "+path, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "QRCode saved to -> " + path, Toast.LENGTH_SHORT).show();
                             share(path);
                         } catch (WriterException e) {
                             e.printStackTrace();
@@ -173,7 +174,7 @@ public class VisitFragment extends Fragment {
             for (int x = 0; x < bitMatrixWidth; x++) {
 
                 pixels[offset + x] = bitMatrix.get(x, y) ?
-                        getResources().getColor(R.color.black):getResources().getColor(R.color.white);
+                        getResources().getColor(R.color.black) : getResources().getColor(R.color.white);
             }
         }
         Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444);
@@ -182,7 +183,7 @@ public class VisitFragment extends Fragment {
         return bitmap;
     }
 
-    private void share(String route){
+    private void share(String route) {
 
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
@@ -194,6 +195,7 @@ public class VisitFragment extends Fragment {
         //startActivity(Intent.createChooser(shareIntent, "Share image using"));
         startActivity(Intent.createChooser(shareIntent, "Compartir QR vía"));
     }
+
     private boolean checkpermissionwriteread() {
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
                 && ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
@@ -201,7 +203,7 @@ public class VisitFragment extends Fragment {
             //fragmentManager.beginTransaction().replace(R.id.nav_host_fragment,visitaFragment).addToBackStack(null).commit();
             return true;
         } else {
-            solicitarPermiso(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE},
+            solicitarPermiso(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     "Sin el permiso de leer/escribir archivos no puedes acceder a tus archivos", 100, getActivity());
             return false;
         }
@@ -225,7 +227,7 @@ public class VisitFragment extends Fragment {
                     })
                     .show();
         } else {
-            ActivityCompat.requestPermissions(actividad, permisos,requestCode);
+            ActivityCompat.requestPermissions(actividad, permisos, requestCode);
         }
     }
 

@@ -18,11 +18,11 @@ import com.smartlines.buhwarfull.model.GuardModel;
 
 import java.util.List;
 
-public class QualifyAdapater extends RecyclerView.Adapter<QualifyAdapater.CustomViewHolder>{
+public class QualifyAdapater extends RecyclerView.Adapter<QualifyAdapater.CustomViewHolder> {
     private List<GuardModel> dataList;
     private Activity context;
 
-    public QualifyAdapater(List<GuardModel> dataList,Activity context) {
+    public QualifyAdapater(List<GuardModel> dataList, Activity context) {
         this.dataList = dataList;
         this.context = context;
     }
@@ -39,6 +39,7 @@ public class QualifyAdapater extends RecyclerView.Adapter<QualifyAdapater.Custom
         ImageView img;
         RelativeLayout relativeLayout;
         CardView cardView;
+
         CustomViewHolder(View itemView) {
             super(itemView);
             myView = itemView;
@@ -73,7 +74,7 @@ public class QualifyAdapater extends RecyclerView.Adapter<QualifyAdapater.Custom
         holder.txtDesc.setText(dataList.get(position).getDescriptionGuard());
 
         CardView mcardView = holder.cardView;
-        mcardView.setOnClickListener( new View.OnClickListener() {
+        mcardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, QualifyActivity.class);

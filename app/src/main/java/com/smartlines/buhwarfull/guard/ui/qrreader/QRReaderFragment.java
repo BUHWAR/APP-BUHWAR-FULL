@@ -41,7 +41,7 @@ public class QRReaderFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View root =inflater.inflate(R.layout.qrreader_fragment, container, false);
+        View root = inflater.inflate(R.layout.qrreader_fragment, container, false);
 
         buttonScan = (Button) root.findViewById(R.id.buttonScan);
         textViewName = (TextView) root.findViewById(R.id.textViewName);
@@ -62,7 +62,7 @@ public class QRReaderFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-            super.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     //Getting the scan results
@@ -102,4 +102,5 @@ public class QRReaderFragment extends Fragment implements View.OnClickListener {
         qrScan.initiateScan();
     }
 
+    //{"name":"Belal Khan", "address":"Ranchi,Jhark"}
 }

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.core.app.ActivityCompat;
@@ -18,6 +19,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.smartlines.buhwarfull.LoginTest;
 import com.smartlines.buhwarfull.R;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
 
     private Button btnPanic;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
 
 
         btnPanic = (Button) findViewById(R.id.btnPanico);
@@ -74,11 +77,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            Toast.makeText(this, "Cerrando Sessión", Toast.LENGTH_LONG).show();
+            FirebaseAuth.getInstance().signOut();
+            Intent intent =  new Intent(MainActivity.this, LoginTest.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
     ////PERMISOS Y ESAS MADRES
     @Override
     public void onRequestPermissionsResult(int requestCode,
@@ -95,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 200) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "Permiso concedido ahora puedes hacer llamadas ", Toast.LENGTH_LONG).show();
- //
+                //
             } else {
                 Toast.makeText(this, "Oops permiso denegado", Toast.LENGTH_LONG).show();
                 //finish();
@@ -110,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Permisos concedidos ahora puedes leer/escribir tus archivos ", Toast.LENGTH_LONG).show();
             //fragmentManager.beginTransaction().replace(R.id.nav_host_fragment,visitaFragment).addToBackStack(null).commit();
         } else {
-            solicitarPermiso(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE},
+            solicitarPermiso(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     "Sin el permiso de leer/escribir archivos no puedes acceder a tus archivos", 100, this);
         }
     }
@@ -145,11 +169,9 @@ public class MainActivity extends AppCompatActivity {
                     })
                     .show();
         } else {
-            ActivityCompat.requestPermissions(actividad, permisos,requestCode);
+            ActivityCompat.requestPermissions(actividad, permisos, requestCode);
         }
     }
-
-
 
 
 }

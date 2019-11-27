@@ -32,14 +32,10 @@
             android:title="Programar visita" />
 
 
-
         <item
             android:id="@+id/nav_qualify"
             android:icon="@drawable/ic_qualify"
             android:title="Calificar a mi guardia" />
-
-
-
 
 
     </group>

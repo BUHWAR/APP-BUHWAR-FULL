@@ -17,9 +17,12 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.smartlines.buhwarfull.LoginTest;
 import com.smartlines.buhwarfull.R;
+import com.smartlines.buhwarfull.colon.activity.MainActivity;
 import com.smartlines.buhwarfull.colon.activity.SosActivity;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -28,6 +31,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -42,6 +46,7 @@ public class GuardMainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private Button btnPanic;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +58,7 @@ public class GuardMainActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_statistics, R.id.nav_helper, R.id.nav_rodin,
-               R.id.nav_visitor, R.id.nav_incidents,R.id.nav_lector_qr)
+                R.id.nav_visitor, R.id.nav_incidents, R.id.nav_lector_qr)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -75,6 +80,26 @@ public class GuardMainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.guard_main, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            Toast.makeText(this, "Cerrando Sessión", Toast.LENGTH_LONG).show();
+            FirebaseAuth.getInstance().signOut();
+            Intent intent =  new Intent(GuardMainActivity.this, LoginTest.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -115,7 +140,7 @@ public class GuardMainActivity extends AppCompatActivity {
             Toast.makeText(this, "Permisos concedidos ahora puedes leer/escribir tus archivos ", Toast.LENGTH_LONG).show();
             //fragmentManager.beginTransaction().replace(R.id.nav_host_fragment,visitaFragment).addToBackStack(null).commit();
         } else {
-            solicitarPermiso(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE},
+            solicitarPermiso(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     "Sin el permiso de leer/escribir archivos no puedes acceder a tus archivos", 100, this);
         }
     }
@@ -150,7 +175,7 @@ public class GuardMainActivity extends AppCompatActivity {
                     })
                     .show();
         } else {
-            ActivityCompat.requestPermissions(actividad, permisos,requestCode);
+            ActivityCompat.requestPermissions(actividad, permisos, requestCode);
         }
     }
 
@@ -165,7 +190,7 @@ public class GuardMainActivity extends AppCompatActivity {
                 //if qr contains data
                 try {
                     //converting the data to json
-                    Toast.makeText(this,"DATOS: "+ result.getContents(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "DATOS: " + result.getContents(), Toast.LENGTH_LONG).show();
                     JSONObject obj = new JSONObject(result.getContents());
                     //setting values to textviews
                     textViewName.setText(obj.getString("name"));

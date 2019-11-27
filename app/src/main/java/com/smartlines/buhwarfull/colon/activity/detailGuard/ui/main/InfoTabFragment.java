@@ -23,6 +23,7 @@ public class InfoTabFragment extends Fragment {
     private RecyclerView recyclerView;
     private List<GuardModel> list;
     private QualifyAdapater adapter;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         galleryViewModel =

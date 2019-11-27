@@ -39,18 +39,17 @@ public class StatiticsFragment extends Fragment {
         pieChart.setDescription(description);
 
         ArrayList<BarEntry> pieEntrys = new ArrayList<BarEntry>();
-        pieEntrys.add(new BarEntry(1,2,"Octubre"));
-        pieEntrys.add(new BarEntry(2,3));
-        pieEntrys.add(new BarEntry(3,4));
-        pieEntrys.add(new BarEntry(4,5));
-        BarDataSet pieDataSet =new BarDataSet(pieEntrys,"Meses");
+        pieEntrys.add(new BarEntry(1, 2, "Octubre"));
+        pieEntrys.add(new BarEntry(2, 3));
+        pieEntrys.add(new BarEntry(3, 4));
+        pieEntrys.add(new BarEntry(4, 5));
+        BarDataSet pieDataSet = new BarDataSet(pieEntrys, "Meses");
         pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
 
-        BarData pieData =new BarData(pieDataSet);
+        BarData pieData = new BarData(pieDataSet);
 
         pieChart.setData(pieData);
     }
-
 
 
 }

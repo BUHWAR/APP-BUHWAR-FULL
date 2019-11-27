@@ -38,12 +38,12 @@ public class IncidentsFragment extends Fragment {
         Calendar calender = Calendar.getInstance();
         SimpleDateFormat mdformat = new SimpleDateFormat("HH:mm:ss");
         String strTime = "Hora actual : " + mdformat.format(calender.getTime());
-        SimpleDateFormat  dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        String strDate = "Fecha : "+dateFormat.format(calender.getTime());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        String strDate = "Fecha : " + dateFormat.format(calender.getTime());
 
-        String[] opcPlace = {"Domicilio particular","Area de esparcimeinto","Area publica","Otro"};
-        String[] opcviews = {"Robo a casa habitación"," Robo de vehículo "," Robo a transeúnte",
-                "Daño en propiedad ajena","Allanamiento de morada"," Lesiones","Alteración del orden público"};
+        String[] opcPlace = {"Domicilio particular", "Area de esparcimeinto", "Area publica", "Otro"};
+        String[] opcviews = {"Robo a casa habitación", " Robo de vehículo ", " Robo a transeúnte",
+                "Daño en propiedad ajena", "Allanamiento de morada", " Lesiones", "Alteración del orden público"};
 
         ArrayAdapter adapterPlace = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opcPlace);
         ArrayAdapter adapterviews = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, opcviews);

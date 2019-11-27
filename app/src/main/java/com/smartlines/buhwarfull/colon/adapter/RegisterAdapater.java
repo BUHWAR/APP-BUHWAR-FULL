@@ -14,7 +14,7 @@ import com.smartlines.buhwarfull.model.RegisterModel;
 
 import java.util.List;
 
-public class RegisterAdapater extends RecyclerView.Adapter<RegisterAdapater.CustomViewHolder>{
+public class RegisterAdapater extends RecyclerView.Adapter<RegisterAdapater.CustomViewHolder> {
     private List<RegisterModel> dataList;
     private Activity context;
 
@@ -32,6 +32,7 @@ public class RegisterAdapater extends RecyclerView.Adapter<RegisterAdapater.Cust
         TextView txtDesc;
 
         CardView cardView;
+
         CustomViewHolder(View itemView) {
             super(itemView);
             myView = itemView;
@@ -62,10 +63,10 @@ public class RegisterAdapater extends RecyclerView.Adapter<RegisterAdapater.Cust
         holder.txtDesc.setText(dataList.get(position).getDescription());
 
         CardView mcardView = holder.cardView;
-        mcardView.setOnClickListener( new View.OnClickListener() {
+        mcardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Intent intent = new Intent(context, DetailGuardActivity.class);
+                // Intent intent = new Intent(context, DetailGuardActivity.class);
                 //context.startActivity(intent);
             }
         });

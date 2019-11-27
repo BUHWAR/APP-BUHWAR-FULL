@@ -9,7 +9,7 @@ public class GuardModel {
     private boolean statusGuard;
 
 
-    public GuardModel(String nameGuard, String numberGuard, String emailGuard, String descriptionGuard,String imgGuar,boolean statusGuard) {
+    public GuardModel(String nameGuard, String numberGuard, String emailGuard, String descriptionGuard, String imgGuar, boolean statusGuard) {
         this.nameGuard = nameGuard;
         this.numberGuard = numberGuard;
         this.emailGuard = emailGuard;

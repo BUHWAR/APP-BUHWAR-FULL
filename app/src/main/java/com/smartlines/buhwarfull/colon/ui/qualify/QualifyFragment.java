@@ -24,6 +24,7 @@ public class QualifyFragment extends Fragment {
     private RecyclerView recyclerView;
     private List<GuardModel> list;
     private QualifyAdapater adapter;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         galleryViewModel =
@@ -32,13 +33,12 @@ public class QualifyFragment extends Fragment {
         View root = (View) inflater.inflate(R.layout.fragment_qualify, container, false);
         recyclerView = (RecyclerView) root.findViewById(R.id.rvGuard);
         list = new ArrayList<GuardModel>();
-        GuardModel guardia1 = new GuardModel("Guardia 1", "1234", "Lopez@gmail.com", "Responsable de guardias noctunas","",false);
-        GuardModel guardia2 = new GuardModel("Guardia 2", "1234", "Lopez@gmail.com", "Responsable de guardias noctunas","",false);
-        GuardModel guardia3 = new GuardModel("Guardia 3", "1234", "Lopez@gmail.com", "Responsable de guardias noctunas","",false);
+        GuardModel guardia1 = new GuardModel("Guardia 1", "1234", "Lopez@gmail.com", "Responsable de guardias noctunas", "", false);
+        GuardModel guardia2 = new GuardModel("Guardia 2", "1234", "Lopez@gmail.com", "Responsable de guardias noctunas", "", false);
+        GuardModel guardia3 = new GuardModel("Guardia 3", "1234", "Lopez@gmail.com", "Responsable de guardias noctunas", "", false);
         list.add(guardia1);
         list.add(guardia2);
         list.add(guardia3);
-
 
 
         fillAdapter(list);
@@ -46,8 +46,8 @@ public class QualifyFragment extends Fragment {
 
     }
 
-    public void  fillAdapter(List<GuardModel> list){
-        adapter = new QualifyAdapater(list,getActivity());
+    public void fillAdapter(List<GuardModel> list) {
+        adapter = new QualifyAdapater(list, getActivity());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
