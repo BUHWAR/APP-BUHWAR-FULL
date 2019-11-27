@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
@@ -16,6 +17,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.smartlines.buhwarfull.R;
 import com.smartlines.buhwarfull.colon.activity.SosActivity;
 
@@ -28,6 +31,12 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import static com.smartlines.buhwarfull.guard.ui.qrreader.QRReaderFragment.textViewAddress;
+import static com.smartlines.buhwarfull.guard.ui.qrreader.QRReaderFragment.textViewName;
 
 public class GuardMainActivity extends AppCompatActivity {
 
@@ -44,7 +53,7 @@ public class GuardMainActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_statistics, R.id.nav_helper, R.id.nav_rodin,
-               R.id.nav_visitor, R.id.nav_incidents)
+               R.id.nav_visitor, R.id.nav_incidents,R.id.nav_lector_qr)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -56,7 +65,6 @@ public class GuardMainActivity extends AppCompatActivity {
             public void onClick(final View v) {
                 setTitle("S.O.S");
                 checkpermissioncall();
-
 
             }
         });
@@ -146,5 +154,34 @@ public class GuardMainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (result != null) {
+            //if qrcode has nothing in it
+            if (result.getContents() == null) {
+                Toast.makeText(this, "Result Not Found", Toast.LENGTH_LONG).show();
+            } else {
+                //if qr contains data
+                try {
+                    //converting the data to json
+                    Toast.makeText(this,"DATOS: "+ result.getContents(),Toast.LENGTH_LONG).show();
+                    JSONObject obj = new JSONObject(result.getContents());
+                    //setting values to textviews
+                    textViewName.setText(obj.getString("name"));
+                    textViewAddress.setText(obj.getString("address"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    //if control comes here
+                    //that means the encoded format not matches
+                    //in this case you can display whatever data is available on the qrcode
+                    //to a toast
+                    Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
+                }
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
 
 }

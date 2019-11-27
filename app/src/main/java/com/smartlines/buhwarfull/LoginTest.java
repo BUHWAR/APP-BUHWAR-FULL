@@ -22,11 +22,11 @@ public class LoginTest extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                Intent intent=new Intent(LoginTest.this, GuardMainActivity.class);
+                Intent intent = new Intent(LoginTest.this, GuardMainActivity.class);
                 startActivity(intent);
             }
         });
     }
 
-    }
+}
 

@@ -25,6 +25,7 @@ public class IncidentsFragment extends Fragment {
     private TextView txtTimeInc;
     private Spinner spinnerPlace;
     private Spinner spinnerViews;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         sendViewModel =

@@ -33,4 +33,10 @@
         android:name="com.smartlines.buhwarfull.guard.ui.rondin.RodinFragment"
         android:label="Mi rondin"
         tools:layout="@layout/fragment_rondin" />
+
+    <fragment
+        android:id="@+id/nav_lector_qr"
+        android:name="com.smartlines.buhwarfull.guard.ui.qrreader.QRReaderFragment"
+        android:label="QR Reader"
+        tools:layout="@layout/fragment_rondin" />
 </navigation>
