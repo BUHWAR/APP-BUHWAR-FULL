@@ -45,7 +45,7 @@ import static com.smartlines.buhwarfull.guard.ui.qrreader.QRReaderFragment.textV
 public class GuardMainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private Button btnPanic;
+    private Button btnPanic,btnQr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +53,7 @@ public class GuardMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_guard_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        btnQr = (Button)toolbar.findViewById(R.id.btnQr);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -70,6 +70,16 @@ public class GuardMainActivity extends AppCompatActivity {
             public void onClick(final View v) {
                 setTitle("S.O.S");
                 checkpermissioncall();
+
+            }
+        });
+
+        btnQr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                setTitle("Qr");
+                Toast.makeText(getApplicationContext(),
+                        "QR", Toast.LENGTH_SHORT).show();
 
             }
         });
