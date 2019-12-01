@@ -37,6 +37,6 @@
     <fragment
         android:id="@+id/nav_lector_qr"
         android:name="com.smartlines.buhwarfull.guard.ui.qrreader.QRReaderFragment"
-        android:label="QR Reader"
+        android:label="Lector"
         tools:layout="@layout/fragment_rondin" />
 </navigation>
