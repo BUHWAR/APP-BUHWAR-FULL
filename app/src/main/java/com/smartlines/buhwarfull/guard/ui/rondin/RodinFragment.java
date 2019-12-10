@@ -49,24 +49,31 @@ public class RodinFragment extends Fragment {
                 mMap.getCameraPosition();
                 mMap.addMarker(new MarkerOptions()
                         .position(new LatLng(22.761158,-102.5852095))
-                        .title("Guardia: Josefa Nuñez")
+                        .title("Guardia: Josefina Nuñez")
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_police))
                 );
 
                 mMap.addMarker(new MarkerOptions()
                         .position(new LatLng(22.7602811,-102.5859025))
                         .title("Guardia: Luisa Aguayo")
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_police))
+
                 );
 
 
                 mMap.addMarker(new MarkerOptions()
                         .position(new LatLng(22.7607023,-102.5862065))
                         .title("Guardia: Pablo Torres")
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_police))
+
                 );
 
 
                 mMap.addMarker(new MarkerOptions()
                         .position(new LatLng(22.7611402,-102.5867626))
                         .title("Guardia: Oscar Andres Manco")
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_police))
+
                 );
 
 
