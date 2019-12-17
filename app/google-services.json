@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "283211877272-1quf63qios98npp198alo0je23ise149.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smartlines.buhwarfull",
+            "certificate_hash": "7f65c019e464d1ce8711098ab623ce4178fa6a42"
+          }
+        },
+        {
           "client_id": "283211877272-34dvnc6tem03onm19goscecg46td7je9.apps.googleusercontent.com",
           "client_type": 3
         }

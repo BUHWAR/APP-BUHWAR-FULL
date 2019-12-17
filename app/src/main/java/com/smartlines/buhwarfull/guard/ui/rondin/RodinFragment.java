@@ -3,11 +3,14 @@ package com.smartlines.buhwarfull.guard.ui.rondin;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,14 +19,18 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.smartlines.buhwarfull.R;
 
 
@@ -33,12 +40,57 @@ public class RodinFragment extends Fragment {
     private GoogleMap mMap;
     private MapView mapView;
     private Context context;
+    private FusedLocationProviderClient fuseLocationProvaiderClient;
+    private Button button;
+    private DatabaseReference firebaseDatabase;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         context = getContext();
+        firebaseDatabase = FirebaseDatabase.getInstance().getReference();
         View root = inflater.inflate(R.layout.fragment_rondin, container, false);
         mapView = (MapView) root.findViewById(R.id.mapView);
+        button = (Button) root.findViewById(R.id.btnGetGeo);
+        fuseLocationProvaiderClient = LocationServices.getFusedLocationProviderClient(context);
+         button.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                         Manifest.permission.ACCESS_FINE_LOCATION)) {
+                     // Mostrar diálogo explicativo
+                 } else {
+                     // Solicitar permiso
+                     ActivityCompat.requestPermissions(
+                             getActivity(),
+                             new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                             LOCATION_REQUEST_CODE);
+                 }
+                 fuseLocationProvaiderClient.getLastLocation()
+                         .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
+                             @Override
+                             public void onSuccess(Location location) {
+
+
+
+                                 // Got last known location. In some rare situations this can be null.
+                                 if (location != null) {
+                                     Log.v("Geo","Latitud: "+location.getLatitude()+"Logitud: "+location.getLongitude());
+                                     firebaseDatabase.child("Guardia").push().child("lnglat").setValue(location.getLongitude()+","+location.getLatitude());
+                                 }
+                             }
+
+                         });
+                 // Controles UI
+                 if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+                         == PackageManager.PERMISSION_GRANTED) {
+                     mMap.setMyLocationEnabled(true);
+                 }
+
+
+             }
+         });
+
+
         mapView.onCreate(savedInstanceState);
         mapView.onResume();
         mapView.getMapAsync(new OnMapReadyCallback() {
@@ -82,22 +134,7 @@ public class RodinFragment extends Fragment {
                 LatLng zac = new LatLng(22.761158,-102.5852095);
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom( new LatLng(22.761158,-102.5852095),50));
 
-                // Controles UI
-                if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
-                        == PackageManager.PERMISSION_GRANTED) {
-                    mMap.setMyLocationEnabled(true);
-                } else {
-                    if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
-                            Manifest.permission.ACCESS_FINE_LOCATION)) {
-                        // Mostrar diálogo explicativo
-                    } else {
-                        // Solicitar permiso
-                        ActivityCompat.requestPermissions(
-                                getActivity(),
-                                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                                LOCATION_REQUEST_CODE);
-                    }
-                }
+
 
 
             }
