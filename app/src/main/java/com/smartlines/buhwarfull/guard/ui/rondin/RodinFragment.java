@@ -4,8 +4,10 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationListener;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,15 +29,21 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.smartlines.buhwarfull.R;
+import com.smartlines.buhwarfull.model.MapsModel;
+
+import java.util.ArrayList;
 
 
-
-public class RodinFragment extends Fragment {
+public class RodinFragment extends Fragment implements OnMapReadyCallback {
     private static final int LOCATION_REQUEST_CODE = 1;
     private GoogleMap mMap;
     private MapView mapView;
@@ -43,6 +51,9 @@ public class RodinFragment extends Fragment {
     private FusedLocationProviderClient fuseLocationProvaiderClient;
     private Button button;
     private DatabaseReference firebaseDatabase;
+    private ArrayList<Marker> realTimeMarkers = new ArrayList<>();
+    private ArrayList<Marker> tmpMarkers = new ArrayList<>();
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -52,99 +63,102 @@ public class RodinFragment extends Fragment {
         mapView = (MapView) root.findViewById(R.id.mapView);
         button = (Button) root.findViewById(R.id.btnGetGeo);
         fuseLocationProvaiderClient = LocationServices.getFusedLocationProviderClient(context);
+
+
+        if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION)) {
+            // Mostrar diálogo explicativo
+        } else {
+            // Solicitar permiso
+            ActivityCompat.requestPermissions(
+                    getActivity(),
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    LOCATION_REQUEST_CODE);
+        }
+        fuseLocationProvaiderClient.getLastLocation()
+                .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+
+
+
+                        // Got last known location. In some rare situations this can be null.
+                        if (location != null) {
+                            Log.v("Geo","Latitud: "+location.getLatitude()+"Logitud: "+location.getLongitude());
+                            firebaseDatabase.child("Guardia").push().child("lnglat").setValue(location.getLongitude()+","+location.getLatitude());
+                        }
+                    }
+
+                });
+        // Controles UI
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            mMap.setMyLocationEnabled(true);
+        }
+
+
          button.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
-                 if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
-                         Manifest.permission.ACCESS_FINE_LOCATION)) {
-                     // Mostrar diálogo explicativo
-                 } else {
-                     // Solicitar permiso
-                     ActivityCompat.requestPermissions(
-                             getActivity(),
-                             new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                             LOCATION_REQUEST_CODE);
-                 }
-                 fuseLocationProvaiderClient.getLastLocation()
-                         .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
-                             @Override
-                             public void onSuccess(Location location) {
 
-
-
-                                 // Got last known location. In some rare situations this can be null.
-                                 if (location != null) {
-                                     Log.v("Geo","Latitud: "+location.getLatitude()+"Logitud: "+location.getLongitude());
-                                     firebaseDatabase.child("Guardia").push().child("lnglat").setValue(location.getLongitude()+","+location.getLatitude());
-                                 }
-                             }
-
-                         });
-                 // Controles UI
-                 if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
-                         == PackageManager.PERMISSION_GRANTED) {
-                     mMap.setMyLocationEnabled(true);
-                 }
 
 
              }
          });
 
 
-        mapView.onCreate(savedInstanceState);
-        mapView.onResume();
-        mapView.getMapAsync(new OnMapReadyCallback() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
-            @Override
-            public void onMapReady(GoogleMap googleMap) {
-                mMap = googleMap;
-                mMap.getCameraPosition();
-                mMap.addMarker(new MarkerOptions()
-                        .position(new LatLng(22.761158,-102.5852095))
-                        .title("Guardia: Josefina Nuñez")
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_police))
-                );
-
-                mMap.addMarker(new MarkerOptions()
-                        .position(new LatLng(22.7602811,-102.5859025))
-                        .title("Guardia: Luisa Aguayo")
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_police))
-
-                );
-
-
-                mMap.addMarker(new MarkerOptions()
-                        .position(new LatLng(22.7607023,-102.5862065))
-                        .title("Guardia: Pablo Torres")
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_police))
-
-                );
-
-
-                mMap.addMarker(new MarkerOptions()
-                        .position(new LatLng(22.7611402,-102.5867626))
-                        .title("Guardia: Oscar Andres Manco")
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_police))
-
-                );
-
-
-
-
-                LatLng zac = new LatLng(22.761158,-102.5852095);
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom( new LatLng(22.761158,-102.5852095),50));
-
-
-
-
-            }
-        });
 
         return root;
     }
 
-
     @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        mMap.getCameraPosition();
+
+        firebaseDatabase.child("Guardia").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for(Marker marker:realTimeMarkers){
+                    marker.remove();
+                }
+
+                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+                    MapsModel mapsModel = snapshot.getValue(MapsModel.class);
+                    Double latitude = mapsModel.getLatitude();
+                    Double longitude = mapsModel.getLongitude();
+                    MarkerOptions markerOptions = new MarkerOptions();
+                    markerOptions.position(new LatLng(latitude,longitude)).icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_police));
+                    tmpMarkers.add(mMap.addMarker(markerOptions));
+                }
+                realTimeMarkers.clear();
+                realTimeMarkers.addAll(tmpMarkers);
+                new CountDownTimer(50000, 1000) {
+
+                    public void onTick(long millisUntilFinished) {
+                        Log.e("seconds remaining: " ,""+ millisUntilFinished / 1000);
+                        onMapReady(mMap);
+                    }
+
+                    public void onFinish() {
+                        Toast.makeText(getContext(),"Puntos actualzados",Toast.LENGTH_SHORT).show();
+                    }
+                }.start();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
+
+
+        @Override
     public void onStart() {
         super.onStart();
         mapView.onStart();
@@ -199,6 +213,10 @@ public class RodinFragment extends Fragment {
             }
 
         }
+    }
+
+    private void countDownTimer(){
+
     }
 
 }
