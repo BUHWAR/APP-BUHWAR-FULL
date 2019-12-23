@@ -63,7 +63,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="80dp"
                                 android:background="@color/colorPrimary"
-                                android:text="¿QUIENES SOMOS?"
+                                android:text="¿QUIÉNES SOMOS?"
                                 android:textColor="@color/colorSecondaryText" />
 
                             <TextView
