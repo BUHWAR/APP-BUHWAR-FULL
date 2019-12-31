@@ -101,7 +101,7 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/btnSendInc"
+                    android:id="@+id/txtGuardName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -115,7 +115,7 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/btnSendInc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="32dp"
